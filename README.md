@@ -14,8 +14,6 @@ DevOps Ninja
 
 ## Aula 2 -  Containers
 
-	- Falar sobre o conceito do DEVOPS - Pegar do material da AWS que eu fiz.
-
 	- Containers Docker
 	- Registro
 	- Kubernetes
@@ -24,15 +22,9 @@ DevOps Ninja
 ## Aula 3 - DevOps
 	- Falar sobre as práticas DevOps
 
-	https://www.slideshare.net/ShannonWilliams14/supercharing-cicd-with-gitlab-and-rancher-june-2017-online-meetup
-
-	slides 13 e 14
-
-
 ## Aula 4 - Ambiente 
 	- Verificar ambiente
 	- Fazer docker login nos host's
-
 
 ## Aula 5 - Construindo sua aplicação 
 	- Fazer build dos containers e rodar aplicação no host
