@@ -1,0 +1,125 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: logs
+  # namespace: kube-system
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  - nodes/proxy
+  - services
+  - endpoints
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+- nonResourceURLs:
+  - /metrics
+  verbs:
+  - get
+
+
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: logs
+  # namespace: kube-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: logs
+subjects:
+
+
+- kind: Group
+  name: system:serviceaccounts
+  apiGroup: rbac.authorization.k8s.io
+- kind: ServiceAccount
+  name: logs
+  namespace: kube-system
+
+
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: logs
+  # namespace: whoami5
+
+
+---
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: whoami5
+  # namespace: whoami5
+  labels:
+    allow.http: "false"
+    application: whoami5
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      application: whoami5
+  template:
+    metadata:
+      labels:
+        application: whoami5
+    spec:
+      serviceAccount: logs
+      containers:
+      - name: whoami5
+        image: registry.rancher.signallink.us/jonathan/whoami
+        env:
+        - name: PASS
+          value: "jon"
+        - name: USER
+          value: "jon"
+        ports:
+        - containerPort: 8778
+        securityContext:
+          privileged: true
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whoami5
+  # namespace: whoami5
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80 # Porta a ser exposta pelo SERVICE
+    targetPort: 8778 # Porta que a aplicação está rodando no POD
+  selector:
+    application: whoami5
+
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: whoami5
+  # namespace: whoami5
+  annotations:
+    allow.http: "false"
+
+spec:
+  rules:
+  - host: app.rancher.instrutor.signallink.us
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: whoami5
+            servicePort: 80 # Porta que sera usada pelo SERVICE - DEVE SER A MESMA do SERVICE
+
+
+

@@ -1,0 +1,17 @@
+{
+  "name": "docker_web_app",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "author": "First Last <first.last@example.com>",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.12.4",
+    "express": "^4.13.3",
+    "mysql": "",
+    "nodemon": "^2.0.4",
+    "redis": ""
+  }
+}

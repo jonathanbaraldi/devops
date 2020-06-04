@@ -1,0 +1,52 @@
+# Versão 2 do Docker-Compose
+version: '2'
+
+services:
+    
+    nginx:
+        restart: "always"
+        image: <dockerhub-user>/nginx:devops
+        ports:
+            - "80:80"
+        links:
+            # Colocar mais nós para escalar
+            - node
+            # - node-2
+            
+    redis:
+        restart: "always"
+        image: <dockerhub-user>/redis:devops
+        ports:
+            - 6379
+
+    mysql:
+        restart: "always"
+        image: mysql
+        ports:
+            - 3306
+        environment:
+            MYSQL_ROOT_PASSWORD: 123
+            MYSQL_DATABASE: books
+            MYSQL_USER: apitreinamento
+            MYSQL_PASSWORD: 123 
+    
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    node:
+        restart: "always"
+        image: <dockerhub-user>/node:devops
+        links:
+            - redis
+            - mysql
+        ports:
+            - 8080
+        volumes:
+            -  volumeteste:/tmp/volumeteste
+    
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# Mapeamento dos volumes
+volumes:
+    volumeteste:
+        external: false
+

@@ -1,0 +1,451 @@
+
+
+---
+apiVersion: v1
+kind: Namespace
+metadata: 
+  name: graylog
+
+
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongodb-pvc
+  namespace: graylog
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 5Gi
+
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: elasticsearch-pvc
+  namespace: graylog
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 5Gi
+
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: graylog-pvc
+  namespace: graylog
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 5Gi
+
+
+
+
+
+
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: graylog
+  namespace: graylog
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  - nodes/proxy
+  - services
+  - endpoints
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+  verbs:
+  - get
+
+
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: graylog
+  namespace: graylog
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: graylog
+subjects:
+- kind: Group
+  name: system:serviceaccounts
+  apiGroup: rbac.authorization.k8s.io
+- kind: ServiceAccount
+  name: graylog
+  namespace: graylog
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: elasticsearch
+  namespace: graylog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: elasticsearch
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        service: elasticsearch
+    spec:
+      containers:
+      - args:
+        - elasticsearch
+        - -Des.cluster.name=graylog
+        image: elasticsearch:2
+        # Repositório oficial  - elasticsearch:2
+        name: elasticsearch
+        resources: {}
+
+        volumeMounts:
+        - name: elasticsearch-volume
+          mountPath: /usr/share/elasticsearch/data
+
+      restartPolicy: Always
+
+      volumes:
+      - name: elasticsearch-volume
+        persistentVolumeClaim:
+          claimName: elasticsearch-pvc
+status: {}
+
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  namespace: graylog
+  labels:
+    service: elasticsearch
+  name: elasticsearch
+spec:
+  clusterIP: None
+  ports:
+  - name: headless
+    port: 55555
+    targetPort: 0
+  selector:
+    service: elasticsearch
+status:
+  loadBalancer: {}
+
+
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: graylog
+  creationTimestamp: null
+  name: mongo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: mongo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        service: mongo
+    spec:
+      containers:
+      - image: mongo:3
+        # Repositório oficial - mongo:3
+        name: mongo
+        resources: {}
+        
+        volumeMounts:
+        - name: mongodb-volume
+          mountPath: /data/db
+
+      restartPolicy: Always
+
+      volumes:
+      - name: mongodb-volume
+        persistentVolumeClaim:
+          claimName: mongodb-pvc
+status: {}
+
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: graylog
+  creationTimestamp: null
+  labels:
+    service: mongo
+  name: mongo
+spec:
+  clusterIP: None
+  ports:
+  - name: headless
+    port: 55555
+    targetPort: 0
+  selector:
+    service: mongo
+status:
+  loadBalancer: {}
+
+
+
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: graylog
+  #namespace: default
+  namespace: graylog
+
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: graylog
+  namespace: graylog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: graylog
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        service: graylog
+    spec:
+      serviceAccount: graylog
+      containers:
+      - env:
+        - name: GRAYLOG_WEB_ENDPOINT_URI
+          value: http://graylog.rancher.<dominio>/api
+        - name: GRAYLOG_ELASTICSEARCH_HOSTS
+          value: "http://elasticsearch.graylog.svc.cluster.local:9200"
+        - name: ELASTICSEARCH_DISCOVERY_ZEN_PING_MULTICAST_ENABLED
+          value: "false"
+        - name: ELASTICSEARCH_DISCOVERY_ZEN_PING_UNICAST_HOSTS
+          value: "elasticsearch.graylog.svc.cluster.local:9300"
+        #- name: GRAYLOG_PASSWORD_SECRET
+        #  value: admin
+        #- name: GRAYLOG_ROOT_PASSWORD_SHA2
+        #  value: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+        image: docker.io/graylog2/server:2.3.0-1 
+        #image: graylog/graylog:3.0
+        # Repositório oficial - docker.io/graylog2/server:2.3.0-1
+        name: graylog
+        ports:
+        - containerPort: 9000
+        - containerPort: 12201
+        resources: {}
+
+        volumeMounts:
+        - name: graylog-volume
+          mountPath: /opt/graylog/data
+
+    #/opt/graylog/data \
+    #/opt/graylog/data/journal \
+    #/opt/graylog/data/log \
+    #/opt/graylog/data/config \
+    #/opt/graylog/data/plugin \
+    #/opt/graylog/data/data
+
+      restartPolicy: Always
+
+      volumes:
+      - name: graylog-volume
+        persistentVolumeClaim:
+          claimName: graylog-pvc
+
+status: {}
+
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  namespace: graylog
+  labels:
+    service: graylog
+  name: graylog
+spec:
+  type: "ClusterIP"
+  ports:
+  - port: 9000
+    targetPort: 9000
+    protocol: TCP
+    name: tcp
+  - port: 12201
+    targetPort: 12201
+    protocol: UDP
+    name: udp
+  selector:
+    service: graylog
+
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  namespace: graylog
+  name: graylog
+  annotations:
+    allow.http: "false"
+spec:
+  rules:
+  - host: graylog.rancher.<dominio>
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: graylog
+            servicePort: 9000
+
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  namespace: graylog
+  name: fluentd
+
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  namespace: graylog
+  name: fluentd
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - endpoints
+  verbs:
+  - get
+  - list
+  - watch
+
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  namespace: graylog
+  name: fluentd
+roleRef:
+  kind: ClusterRole
+  name: fluentd
+  apiGroup: rbac.authorization.k8s.io
+subjects:
+- kind: ServiceAccount
+  name: fluentd
+  namespace: kube-system
+
+
+
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  namespace: graylog
+  name: fluentd
+  labels:
+    k8s-app: fluentd-logging
+    version: v1
+    kubernetes.io/cluster-service: "true"
+spec:
+  selector:
+    matchLabels:
+      k8s-app: fluentd-logging
+      version: v1
+  template:
+    metadata:
+      labels:
+        k8s-app: fluentd-logging
+        version: v1
+        kubernetes.io/cluster-service: "true"
+    spec:
+      serviceAccount: fluentd
+      serviceAccountName: fluentd
+      containers:
+      - name: fluentd
+        image: xbernpa/fluentd-kubernetes-gelf
+        # Repositório oficial - xbernpa/fluentd-kubernetes-gelf
+        imagePullPolicy: Always 
+        env:
+          - name:  GELF_HOST 
+            #value: "graylog.prod.rancher.tcu.gov.br"
+            # value: "10.1.7.65"
+            value: "graylog.graylog.svc.cluster.local"
+          - name:  GELF_PORT
+            value: "12201"
+          - name: GELF_PROTOCOL
+            value: "udp"
+        resources:
+          limits:
+            memory: 200Mi
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        volumeMounts:
+        - name: varlog
+          mountPath: /var/log
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/
+          readOnly: true
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: varlog
+        hostPath:
+          path: /var/log
+      - name: varlibdockercontainers
+        hostPath:
+          # path: /var/log/containers/
+          path: /var/lib/docker/
+
