@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: constraints-cpu-demo-2
+  namespace: constraints-cpu-example
+spec:
+  containers:
+  - name: constraints-cpu-demo-2-ctr
+    image: nginx
+    resources:
+      limits:
+        cpu: "1.5"
+      requests:
+        cpu: "500m"

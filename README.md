@@ -87,11 +87,32 @@ DevOps Ninja
 	How to Build an Enterprise Kubernetes Strategy -- June 2019.pdf
 	
 
-# Roadmap
+
+# Aulas Extras
 
 ## Políticas de rede
+
+
+
+
+
+
+
+
+
+
+
+# Roadmap
+
+## Resource Quotas
+
+## Arquitetura de Microserviços
+
 ## Istio - ServiceMesh
+
 ## CSI Scans
+
 ## Database in containers
 
-?????
+## Produção
+
