@@ -98,7 +98,7 @@ $ exit
 
 
 
-# Configuração de CPU e MEM por namespace
+# Configuração de CPU por namespace
 
 ## Configure Minimum and Maximum CPU Constraints for a Namespace
 
@@ -163,110 +163,7 @@ pods "constraints-cpu-demo-2" is forbidden: maximum cpu usage per Container is 8
 
 
 
-
-
-
-
-
-
-
-
-
-
-# ISTO - Service Mesh
-
-
-
-https://istio.io/latest/docs/examples/bookinfo/#deploying-the-application
-
-
-
-
-The Bookinfo application is broken into four separate microservices:
-
-productpage. The productpage microservice calls the details and reviews microservices to populate the page.
-details. The details microservice contains book information.
-reviews. The reviews microservice contains book reviews. It also calls the ratings microservice.
-ratings. The ratings microservice contains book ranking information that accompanies a book review.
-There are 3 versions of the reviews microservice:
-
-Version v1 doesn’t call the ratings service.
-Version v2 calls the ratings service, and displays each rating as 1 to 5 black stars.
-Version v3 calls the ratings service, and displays each rating as 1 to 5 red stars.
-The end-to-end architecture of the application is shown below.
-
-
-
-
-This application is polyglot, i.e., the microservices are written in different languages. It’s worth noting that these services have no dependencies on Istio, but make an interesting service mesh example, particularly because of the multitude of services, languages and versions for the reviews service.
-
-
-
-If you use GKE, please ensure your cluster has at least 4 standard GKE nodes. If you use Minikube, please ensure you have at least 4GB RAM.
-
-
-```sh
-$ kubectl label namespace default istio-injection=enabled
-
-$ kubectl apply -f bookinfo.yml
-
-
-$ kubectl get services
-
-$ kubectl get pods
-
-$ kubectl exec -it "$(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}')" -c ratings -- curl productpage:9080/productpage | grep -o "<title>.*</title>"
-
-$ kubectl apply -f bookinfo-gateway.yaml
-
-$ kubectl get gateway
-
-
-
-$ kubectl get svc istio-ingressgateway -n istio-system
-
-
-
-$ kubectl apply -f - <<EOF
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: httpbin-gateway
-spec:
-  selector:
-    istio: ingressgateway # use Istio default gateway implementation
-  servers:
-  - port:
-      number: 80
-      name: http
-      protocol: HTTP
-    hosts:
-    - "*"
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: httpbin
-spec:
-  hosts:
-  - "*"
-  gateways:
-  - httpbin-gateway
-  http:
-  - match:
-    - uri:
-        prefix: /headers
-    route:
-    - destination:
-        port:
-          number: 8000
-        host: httpbin
-EOF
-
-
-
-
-```
+# RANCHER-UI
 
 
 
@@ -278,10 +175,32 @@ EOF
 
 
 
+# PERMISSÕES - IAM
 
-# RANCHER
+## Nível do Rancher
+	Criar e gerenciar clusters, usuários, etc,
+
+## Nível do Cluster
+	Criar e gerenciar objetos, deployments, etc
 
 
+ADMIN - pode tudo
+DEV - esse usuário , permissão para quase tudo, exceto ver o secrets.
+
+
+
+
+
+
+# Certificado SSL - AWS Cert-manager
+
+1) Criação do certificado
+
+2) Criação do ELB, registrando as máquinas e usando o certificado criado anteriormente
+
+3) Alteração do DNS     * .rancher.<dominio>    para apontar para o ELB
+
+4) Testar aplicações
 
 
 
@@ -311,12 +230,4 @@ EOF
 	- monitoramento
 	- Registro
 	- Pipeline
-
-## 
-
-
-
-
-
-
 

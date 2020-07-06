@@ -92,10 +92,9 @@ DevOps Ninja
 
 ## Políticas de rede
 
+## Resource Quotas
 
-
-
-
+## Rancher RBAC
 
 
 
@@ -104,7 +103,11 @@ DevOps Ninja
 
 # Roadmap
 
-## Resource Quotas
+
+
+## Domínios gratuitos
+
+## Auditoria do Kubernetes
 
 ## Arquitetura de Microserviços
 
@@ -114,5 +117,9 @@ DevOps Ninja
 
 ## Database in containers
 
-## Produção
+## Kubernetes em Produção
+
+## Certificado SSL - AWS Cert-Manager
+
+s
 
