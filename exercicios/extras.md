@@ -197,10 +197,15 @@ DEV - esse usuário , permissão para quase tudo, exceto ver o secrets.
 1) Criação do certificado
 
 2) Criação do ELB, registrando as máquinas e usando o certificado criado anteriormente
+	- Success codes - 404
 
-3) Alteração do DNS     * .rancher.<dominio>    para apontar para o ELB
+3) Alteração do DNS     * .rancher.<dominio>    para apontar para o ELB - somente https
 
 4) Testar aplicações
+
+```sh
+$ kubectl apply -f app.yml
+```
 
 
 

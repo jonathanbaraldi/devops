@@ -55,7 +55,7 @@ metadata:
 
 ---
 kind: Deployment
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: whoami5
   # namespace: whoami5
@@ -75,14 +75,9 @@ spec:
       serviceAccount: logs
       containers:
       - name: whoami5
-        image: registry.rancher.signallink.us/jonathan/whoami
-        env:
-        - name: PASS
-          value: "jon"
-        - name: USER
-          value: "jon"
+        image: jwilder/whoami
         ports:
-        - containerPort: 8778
+        - containerPort: 8000
         securityContext:
           privileged: true
 
@@ -97,7 +92,7 @@ spec:
   type: ClusterIP
   ports:
   - port: 80 # Porta a ser exposta pelo SERVICE
-    targetPort: 8778 # Porta que a aplicação está rodando no POD
+    targetPort: 8000 # Porta que a aplicação está rodando no POD
   selector:
     application: whoami5
 
@@ -113,7 +108,7 @@ metadata:
 
 spec:
   rules:
-  - host: app.rancher.instrutor.signallink.us
+  - host: app.rancher.<dominio.com>
     http:
       paths:
         - path: /
