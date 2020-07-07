@@ -163,6 +163,12 @@ pods "constraints-cpu-demo-2" is forbidden: maximum cpu usage per Container is 8
 
 
 
+
+
+
+
+
+
 # RANCHER-UI
 
 
@@ -206,6 +212,70 @@ DEV - esse usuário , permissão para quase tudo, exceto ver o secrets.
 ```sh
 $ kubectl apply -f app.yml
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+# Importação de cluster
+
+
+Para fazermos a Federação do cluster iremos executar os seguintes passos:
+
+1) Criação de outro cluster. Criar outro cluster, usando uma máquina UBUNTU na AWS, e iremos instalar esse novo cluster usando o K3S.
+
+https://k3s.io
+
+```sh
+$ sudo su
+$ curl -sfL https://get.k3s.io | sh -
+  # Check for Ready node, 
+  takes maybe 30 seconds
+$ k3s kubectl get node
+```
+
+2) Depois do novo cluster instalado, iremos fazer a importação do cluster dentro do nosso Rancher atual.
+
+
+
+
+
+
+
+
+
+
+
+# ISTIO - ServiceMesh
+
+```sh
+$ kubectl label namespace default istio-injection=enabled
+
+$ kubectl apply -f bookinfo.yml
+
+$ kubectl get services
+
+$ kubectl get pods
+
+$ kubectl exec -it "$(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}')" -c ratings -- curl productpage:9080/productpage | grep -o "<title>.*</title>"
+
+$ kubectl apply -f bookinfo-gateway.yml
+
+```
+
+
+
+
+
+
+
 
 
 
