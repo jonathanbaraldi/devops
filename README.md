@@ -86,6 +86,7 @@ DevOps Ninja
 
 	How to Build an Enterprise Kubernetes Strategy -- June 2019.pdf
 	
+	
 
 
 # Aulas Extras
@@ -96,14 +97,13 @@ DevOps Ninja
 
 ## Rancher RBAC
 
+## Certificado SSL - AWS Cert-Manager
 
-
+## Importação de cluster
 
 
 
 # Roadmap
-
-
 
 ## Domínios gratuitos
 
@@ -119,7 +119,18 @@ DevOps Ninja
 
 ## Kubernetes em Produção
 
-## Certificado SSL - AWS Cert-Manager
+## Volumes - Parte 2
 
-s
+
+	1 - Poderia entrar mais detalhes sobre gerenciamento de volumes (longhorn), principalmente volumes externos.
+	- Integrar volumes externos ao cluster.
+	- Expansão dos volumes como novos discos
+	- Gerenciar backups ou recomendação de backup extra.
+
+	2 - Como disse na aula de encerramento, poderia falar também sobre  Banco de dados.
+		- Replicação master/slave
+		- Gerenciamento de volumes.
+
+
+
 

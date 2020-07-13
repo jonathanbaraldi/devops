@@ -1,0 +1,52 @@
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-ssd
+  labels:
+    app: mysql-ssd
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mysql-ssd
+  template:
+    metadata:
+      labels:
+        app: mysql-ssd
+    spec:
+      containers:
+      - image: mariadb:10.4
+        name: mysql-ssd
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: changeme
+        ports:
+        - containerPort: 3306
+          name: mysql-ssd
+        
+        volumeMounts:
+        - name: mysql-ssd-volume
+          mountPath: /var/lib/mysql
+        
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "rancher"
+      
+      nodeSelector:
+        database: ssd
+
+      volumes:
+      - name: mysql-ssd-volume
+        hostPath:
+          path: /opt/default/mysql-ssd-volume
+      #- name: mysql-volume
+      #  nfs: 
+      #    path: /var/rancher/nfs/homolog/testejon/redis
+      #    server: 10.33.1.185
+
+
+

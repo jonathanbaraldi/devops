@@ -226,8 +226,13 @@ $ kubectl apply -f app.yml
 
 # Importação de cluster
 
+## Federação
+https://platform9.com/blog/kubernetes-federation-what-it-is-and-how-to-set-it-up/
 
-Para fazermos a Federação do cluster iremos executar os seguintes passos:
+https://github.com/kubernetes-sigs/kubefed
+
+## Importação
+Para fazermos a Importação do cluster iremos executar os seguintes passos:
 
 1) Criação de outro cluster. Criar outro cluster, usando uma máquina UBUNTU na AWS, e iremos instalar esse novo cluster usando o K3S.
 
@@ -242,6 +247,50 @@ $ k3s kubectl get node
 ```
 
 2) Depois do novo cluster instalado, iremos fazer a importação do cluster dentro do nosso Rancher atual.
+
+
+
+
+
+
+
+
+
+
+
+
+# Banco de dados em container
+
+https://blogs.oracle.com/cloudnative/running-a-mysql-database-in-containers-the-right-way
+
+https://github.com/oracle/mysql-operator
+
+
+The MySQL Operator provides the following core features:
+
+Create and delete highly available MySQL InnoDB clusters in Kubernetes with minimal effort
+Automate database backups, failure detection, and recovery
+Schedule automated backups as part of a cluster definition
+Create "on-demand" backups.
+Use backups to restore a database
+
+
+## Pontos a destacar
+
+- Performance
+- Gerenciamento - Backup
+- Automações
+
+
+
+```sh
+
+$ kubectl create ns mysql-operator
+$ helm install --name mysql-operator mysql-operator
+
+
+```
+
 
 
 
