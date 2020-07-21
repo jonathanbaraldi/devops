@@ -328,4 +328,27 @@ spec:
       volumes:
       - name: tmp
         emptyDir: {}
+
+
+
+
 ---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    app: productpage
+    ingress: productpage
+  name: product
+  namespace: default
+spec:
+  rules:
+  - host: product.rancher.dev-ops-ninja.com
+    http:
+      paths:
+      - backend:
+          serviceName: productpage
+          servicePort: 9080
+status:
+  loadBalancer: {}
+

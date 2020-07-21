@@ -302,7 +302,15 @@ $ helm install --name mysql-operator mysql-operator
 
 
 
-# ISTIO - ServiceMesh
+# ISTIO - ServiceMesh - Parte 1
+
+https://istio.io/latest/docs/examples/bookinfo/
+Arquitetura do Istio.
+
+Habilitar o Istio no Rancher.
+
+Implantar a aplicação BookInfo e ver a arquitetura dela.
+
 
 ```sh
 $ kubectl label namespace default istio-injection=enabled
@@ -313,13 +321,11 @@ $ kubectl get services
 
 $ kubectl get pods
 
-$ kubectl exec -it "$(kubectl get pod -l app=ratings -o jsonpath='{.items[0].metadata.name}')" -c ratings -- curl productpage:9080/productpage | grep -o "<title>.*</title>"
-
-$ kubectl apply -f bookinfo-gateway.yml
-
 ```
 
+Gerar tráfego acessando a URL.
 
+Acessar Kiali e Jaeger e Grafana
 
 
 
