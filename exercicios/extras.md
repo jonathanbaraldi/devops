@@ -300,8 +300,6 @@ $ helm install --name mysql-operator mysql-operator
 
 
 
-
-
 # ISTIO - ServiceMesh - Parte 1
 
 https://istio.io/latest/docs/examples/bookinfo/
@@ -326,6 +324,43 @@ $ kubectl get pods
 Gerar tráfego acessando a URL.
 
 Acessar Kiali e Jaeger e Grafana
+
+
+
+
+
+
+# DIND - Docker Inside Docker
+
+https://hub.docker.com/_/docker
+
+
+
+```sh
+$ docker pull docker
+
+$ docker run --privileged --name dind -d docker:dind
+$ docker exec -it dind /bin/sh  
+
+
+$ docker run --privileged --name dind2 -d docker:dind
+$ docker exec -it dind2 /bin/sh  
+
+
+$ docker run --privileged --name dind3 -d docker:dind
+$ docker exec -it dind3 /bin/sh 
+
+```
+
+Gerar tráfego acessando a URL.
+
+Acessar Kiali e Jaeger e Grafana
+
+
+
+
+
+
 
 
 
