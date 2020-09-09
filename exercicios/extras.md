@@ -361,16 +361,11 @@ Acessar Kiali e Jaeger e Grafana
 
 
 
+# Limpeza de cluster
 
+Usar o repositório:
 
-
-
-
-
-
-
-
-
+https://github.com/jonathanbaraldi/k8s-cleanup
 
 
 

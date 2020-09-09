@@ -20,7 +20,7 @@ spec:
   storageClassName: longhorn
   resources:
     requests:
-      storage: 5Gi
+      storage: 6Gi
 
 
 ---
@@ -35,7 +35,7 @@ spec:
   storageClassName: longhorn
   resources:
     requests:
-      storage: 5Gi
+      storage: 6Gi
 
 
 ---
@@ -50,7 +50,7 @@ spec:
   storageClassName: longhorn
   resources:
     requests:
-      storage: 5Gi
+      storage: 6Gi
 
 
 
@@ -338,7 +338,7 @@ metadata:
     allow.http: "false"
 spec:
   rules:
-  - host: graylog.rancher.<dominio>
+  - host: graylog.rancher.dev-ops-ninja.com
     http:
       paths:
         - path: /
