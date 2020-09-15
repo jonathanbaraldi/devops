@@ -359,14 +359,23 @@ Acessar Kiali e Jaeger e Grafana
 
 
 
-
-
 # Limpeza de cluster
 
 Usar o repositório:
 
 https://github.com/jonathanbaraldi/k8s-cleanup
 
+
+
+# Rancher HA - Rancher RKE
+
+Usar o repositório:
+
+https://github.com/jonathanbaraldi/rancher-ha.git
+
+# Kubernetes HA 
+
+https://github.com/jonathanbaraldi/rancher-ha.git
 
 
 
