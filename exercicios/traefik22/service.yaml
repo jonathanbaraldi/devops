@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-daemon-set
+  # namespace: whoami5
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80 # Porta a ser exposta pelo SERVICE
+    targetPort: 8080 # Porta que a aplicação está rodando no POD
+  selector:
+    app: traefik

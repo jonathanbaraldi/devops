@@ -1,0 +1,73 @@
+---
+kind: DaemonSet
+apiVersion: apps/v1
+metadata:
+  name: traefik-daemon-set
+  labels:
+    applicationn: traefik-daemon-set
+spec:
+  selector:
+    matchLabels:
+      app: traefik
+  template:
+    metadata:
+      labels:
+        applicationn: traefik-daemon-set
+    spec:
+      serviceAccountName: traefik-ingress-controller
+      terminationGracePeriodSeconds: 60
+      containers:
+      - image: traefik:v2.2
+        name: traefik-ingress-lb
+        ports:
+        - name: http
+          containerPort: 80
+          hostPort: 80
+        - name: https
+          containerPort: 443
+          hostPort: 443
+        - name: admin
+          containerPort: 8080
+          hostPort: 8080
+        securityContext:
+          capabilities:
+            drop:
+            - ALL
+            add:
+            - NET_BIND_SERVICE
+        args:
+        # Enable the dashboard without requiring a password. Not recommended
+        # for production.
+        - --api.insecure
+        - --api.dashboard
+
+        # Specify that we want to use Traefik as an Ingress Controller.
+        - --providers.kubernetesingress
+
+        # Define two entrypoint ports, and setup a redirect from HTTP to HTTPS.
+        - --entryPoints.web.address=:80
+        - --entryPoints.websecure.address=:443
+        - --entrypoints.web.http.redirections.entryPoint.to=websecure
+        - --entrypoints.web.http.redirections.entryPoint.scheme=https
+
+        # Enable debug logging. Useful to work out why something might not be
+        # working. Fetch logs of the pod.
+        # - --log.level=debug
+
+        # Let's Encrypt Configurtion.
+        - --certificatesresolvers.default.acme.email=<SEU_EMAIL>
+        - --certificatesresolvers.default.acme.storage=acme.json
+        - --certificatesresolvers.default.acme.tlschallenge
+        # Use the staging ACME server. Uncomment this while testing to prevent
+        # hitting rate limits in production.
+        # - --certificatesresolvers.default.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/dire
+        - --accesslog=true
+        - --log=true
+        - --metrics=true
+        - --metrics.prometheus=true
+        #- --metrics.prometheus.entryPoint="web-secure"
+
+
+
+
+

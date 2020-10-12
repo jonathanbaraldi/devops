@@ -381,6 +381,84 @@ https://github.com/jonathanbaraldi/rancher-ha.git
 
 
 
+
+
+
+
+
+
+
+# Traefik 2.2
+
+
+https://blog.tomarrell.com/post/traefik_v2_on_kubernetes
+
+
+Ubuntu 20.04 LTS
+
+Docker 19.03
+
+Kubernetes 1.19.2
+
+Rancher 2.5
+
+Traefik 2.2
+
+
+
+```sh
+
+$ ssh -i devops-ninja.pem ubuntu@
+$ ssh -i devops-ninja.pem ubuntu@
+
+$ sudo su
+$ curl https://releases.rancher.com/install-docker/19.03.sh  | sh
+$ usermod -aG docker ubuntu
+
+
+
+
+$ docker run -d --restart=unless-stopped \
+  -p 80:80 -p 443:443 \
+  --privileged \
+  rancher/rancher:latest
+
+
+
+$ cd traefik22
+$ kubectl apply -k .
+
+# acessar o ip de alguma máquina na porta 8080
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # PRODUCAO
 
 ## Segurança
@@ -390,14 +468,4 @@ https://github.com/jonathanbaraldi/rancher-ha.git
 	- Portas das máquinas
 	- Usuarios e namespaces
 
-
-## Administração e gerenciamento do cluster
-	- Limpeza do clsuter
-	- Limites dos PODS e NAMESPACES
-	- Serviços para os desenvolvedores
-
-	- Logs
-	- monitoramento
-	- Registro
-	- Pipeline
 

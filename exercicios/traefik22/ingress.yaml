@@ -1,0 +1,18 @@
+---
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: traefik-daemon-set
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.tls.certresolver: default
+spec:
+  rules:
+    - host: traefik.rancher.dev-ops-ninja.com
+      http:
+        paths:
+          - backend:
+              serviceName: traefik-daemon-set
+              servicePort: 80
+

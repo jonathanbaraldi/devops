@@ -1,0 +1,85 @@
+
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: whoami5
+  # namespace: whoami5
+  labels:
+    allow.http: "false"
+    application: whoami5
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      application: whoami5
+  template:
+    metadata:
+      labels:
+        application: whoami5
+    spec:
+      containers:
+      - name: whoami5
+        image: jwilder/whoami
+        ports:
+        - containerPort: 8000
+        securityContext:
+          privileged: true
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whoami5
+  # namespace: whoami5
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80 # Porta a ser exposta pelo SERVICE
+    targetPort: 8000 # Porta que a aplicação está rodando no POD
+  selector:
+    application: whoami5
+
+
+---
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: whoami5
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.tls.certresolver: default
+spec:
+  rules:
+    - host: app.rancher.dev-ops-ninja.com
+      http:
+        paths:
+          - backend:
+              serviceName: whoami5
+              servicePort: 80
+
+
+
+# kind: Ingress
+# apiVersion: extensions/v1beta1
+# metadata:
+#   name: helloworld-ingress
+#   annotations:
+#     kubernetes.io/ingress.class: traefik
+#     traefik.ingress.kubernetes.io/router.tls: "true"
+#     traefik.ingress.kubernetes.io/router.tls.certresolver: default
+# spec:
+#   rules:
+#     - host: helloworld.com
+#       http:
+#         paths:
+#           - path: /helloworld
+#             backend:
+#               serviceName: helloworld-service
+#               servicePort: 8080
+
+
+
+
