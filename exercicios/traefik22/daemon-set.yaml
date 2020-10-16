@@ -60,7 +60,8 @@ spec:
         - --certificatesresolvers.default.acme.tlschallenge
         # Use the staging ACME server. Uncomment this while testing to prevent
         # hitting rate limits in production.
-        # - --certificatesresolvers.default.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/dire
+        - --certificatesresolvers.default.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory
+        
         - --accesslog=true
         - --log=true
         - --metrics=true

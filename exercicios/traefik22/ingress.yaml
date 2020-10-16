@@ -9,7 +9,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.tls.certresolver: default
 spec:
   rules:
-    - host: traefik.rancher.dev-ops-ninja.com
+    - host: traefik.rancher.<SEU_DOMINIO>
       http:
         paths:
           - backend:

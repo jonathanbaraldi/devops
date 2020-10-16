@@ -390,8 +390,9 @@ https://github.com/jonathanbaraldi/rancher-ha.git
 
 # Traefik 2.2
 
-
 https://blog.tomarrell.com/post/traefik_v2_on_kubernetes
+
+https://traefik.io/blog/traefik-2-2-ingress/
 
 
 Ubuntu 20.04 LTS
@@ -408,28 +409,14 @@ Traefik 2.2
 
 ```sh
 
-$ ssh -i devops-ninja.pem ubuntu@
-$ ssh -i devops-ninja.pem ubuntu@
-
-$ sudo su
-$ curl https://releases.rancher.com/install-docker/19.03.sh  | sh
-$ usermod -aG docker ubuntu
-
-
-
-
-$ docker run -d --restart=unless-stopped \
-  -p 80:80 -p 443:443 \
-  --privileged \
-  rancher/rancher:latest
-
-
-
 $ cd traefik22
+# Alterar o ingress, colocar o host do seu endereço
+# Alerar o email e o comentário de staging no deamon-set
 $ kubectl apply -k .
 
-# acessar o ip de alguma máquina na porta 8080
+# Acessar o dashboard
 
+$ kubectl apply -f app2.yml
 
 ```
 
