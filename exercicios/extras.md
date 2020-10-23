@@ -406,9 +406,7 @@ Rancher 2.5
 Traefik 2.2
 
 
-
 ```sh
-
 $ cd traefik22
 # Alterar o ingress, colocar o host do seu endereço
 # Alerar o email e o comentário de staging no deamon-set
@@ -416,6 +414,7 @@ $ kubectl apply -k .
 
 # Acessar o dashboard
 
+# trocar o ingress da Aplicação
 $ kubectl apply -f app2.yml
 
 ```
@@ -428,6 +427,66 @@ $ kubectl apply -f app2.yml
 
 
 
+# K3S - Kubernetes on the Edge / Kubernetes Lightweight
+
+https://k3s.io
+
+https://rancher.com/docs/k3s/latest/en/
+
+https://www.youtube.com/watch?v=WYPd7i15XOg&t=
+
+https://www.slideshare.net/ShannonWilliams14/introducing-k3s-a-lightweight-kubernetes-distribution
+
+PDF
+
+```sh
+# Rancher Server - 
+
+$ ssh -i devops-ninja.pem ubuntu@
+
+# K3S
+$ ssh -i devops-ninja.pem ubuntu@
+$ ssh -i devops-ninja.pem ubuntu@
+$ ssh -i devops-ninja.pem ubuntu@
+
+
+# Instalacao do Rancher
+$ curl https://releases.rancher.com/install-docker/19.03.sh | sh
+$ docker run -d --restart=unless-stopped \
+  -p 80:80 -p 443:443 \
+  --privileged \
+  rancher/rancher:latest
+
+
+# K3S - MASTER
+$ sudo su
+$ curl -sfL https://get.k3s.io | sh -
+
+# Kubeconfig é escrito em  /etc/rancher/k3s/k3s.yaml
+$ k3s kubectl get node
+
+# Em um nó diferente, rode o código abaixo. NODE_TOKEN está em  /var/lib/rancher/k3s/server/node-token
+	
+	# K10feb7a2655de1631f87e50d2a4015a5fb4810dea253327da6c29a6c7d48004e4d::server:c3627e8c3b3a29c281daabb8311a3b44
+
+
+# NODE
+# Logar no node1 - 
+
+$ curl -sfL https://get.k3s.io | K3S_URL=https://3.223.140.79:6443 K3S_TOKEN=K10feb7a2655de1631f87e50d2a4015a5fb4810dea253327da6c29a6c7d48004e4d::server:c3627e8c3b3a29c281daabb8311a3b44 sh -
+
+# Logar no node2 - 
+$ curl -sfL https://get.k3s.io | K3S_URL=https://3.223.140.79:6443 K3S_TOKEN=K10feb7a2655de1631f87e50d2a4015a5fb4810dea253327da6c29a6c7d48004e4d::server:c3627e8c3b3a29c281daabb8311a3b44 sh -
+
+
+# IMPORTAR CLUSTER PARA RANCHER
+$ curl --insecure -sfL https://3.235.94.249/v3/import/l4nclrvdm4w5cp5f4lglt6g2gcjxmgkxg59hm6w7646kqvc7slq89p.yaml | k3s kubectl apply -f -
+
+
+# Executar o Kubectl no mac ou integrador
+$ kubectl get nodes
+
+```
 
 
 

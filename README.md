@@ -86,51 +86,38 @@ DevOps Ninja
 
 	How to Build an Enterprise Kubernetes Strategy -- June 2019.pdf
 	
-	
+## Aula 24 - Encerramento	
 
 
 # Aulas Extras
 
-## Políticas de rede
+## Aula 25 - Políticas de rede
 
-## Resource Quotas
+## Aula 26 - Rancher-Overview
 
-## Rancher RBAC
+## Aula 27 - Kubernetes - Limites
 
-## Certificado SSL - AWS Cert-Manager
+## Aula 28 - Permissões - Rancher e Kubernetes
 
-## Importação de cluster
+## Aula 29 - Kubernetes - Certificados SSL
 
+## Aula 30 - Rancher - Importação de cluster Kubernetes
 
+## Aula 31 - Banco de dados em container
 
-# Roadmap
+## Aula 32 - Produção - Arquitetura
 
-## Domínios gratuitos
+## Aula 33 - Istio - Service Mesh - Parte 1
 
-## Auditoria do Kubernetes
+## Aula 34 - Docker DinD
 
-## Arquitetura de Microserviços
+## Aula 35 - Limpeza do cluster
 
-## Istio - ServiceMesh
+## Aula 36 - Rancher HA
 
-## CSI Scans
+## Aula 37 - Kubernetes HA
 
-## Database in containers
-
-## Kubernetes em Produção
-
-## Volumes - Parte 2
-
-
-	1 - Poderia entrar mais detalhes sobre gerenciamento de volumes (longhorn), principalmente volumes externos.
-	- Integrar volumes externos ao cluster.
-	- Expansão dos volumes como novos discos
-	- Gerenciar backups ou recomendação de backup extra.
-
-	2 - Como disse na aula de encerramento, poderia falar também sobre  Banco de dados.
-		- Replicação master/slave
-		- Gerenciamento de volumes.
-
+## Aula 38 - DNS - Traefik 2.2
 
 
 
