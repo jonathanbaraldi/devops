@@ -469,9 +469,17 @@ $ k3s kubectl get node
 	
 	# K10feb7a2655de1631f87e50d2a4015a5fb4810dea253327da6c29a6c7d48004e4d::server:c3627e8c3b3a29c281daabb8311a3b44
 
+	K10046df90fbfde67353f94d2ea625d6ea1e478591568b30f47a84aed3d5ba58d4a::server:b8577bbd3e7a56b4377d11a3a8bbecd6
+	18.215.188.122
+
+	curl -sfL https://get.k3s.io | K3S_URL=https://18.215.188.122:6443 K3S_TOKEN=K10046df90fbfde67353f94d2ea625d6ea1e478591568b30f47a84aed3d5ba58d4a::server:b8577bbd3e7a56b4377d11a3a8bbecd6 sh -
 
 # NODE
 # Logar no node1 - 
+	curl -sfL https://get.k3s.io | K3S_URL=https://52.3.235.1:6443 K3S_TOKEN=K10b46e09ab152ef6b307c3cf52ce2fae56cf6054492404a55c3edddfcaba382b50::server:965b7b181d6193cc1593fd8b5babb9b3 sh -
+	
+	
+
 
 $ curl -sfL https://get.k3s.io | K3S_URL=https://3.223.140.79:6443 K3S_TOKEN=K10feb7a2655de1631f87e50d2a4015a5fb4810dea253327da6c29a6c7d48004e4d::server:c3627e8c3b3a29c281daabb8311a3b44 sh -
 
@@ -492,10 +500,65 @@ $ kubectl get nodes
 
 
 
+# Cluster Explorer
+
+https://rancher.com/docs/rancher/v2.x/en/k8s-in-rancher/
+
+
+Cluster Explorer: 
+	New dashboard to provide a deeper look into clusters under management.
+	Manage all Kubernetes cluster resources including custom resources from the Kubernetes operator ecosystem
+	Deploy and manage Helm charts from our new Apps & Marketplace
+	View logs and interact with kubectl shell in a new IDE-like viewer
+
+Ambiente com o mesmo processo de instalação do exercício anterior:
+
+- Ubuntu 20.04 LTS
+- Docker 19.03
+- Kubernetes 1.18.9 -  K3S
+- Rancher 2.5.1
 
 
 
 
+
+# Autoscaling
+
+Mesmo ambiente do exercício anterior, com o Prometheus e Grafana instalados.
+
+
+```sh
+$ kubectl apply -f php-apache.yml
+```
+
+Agora iremos fazer a criação do Pod Autoscaler
+
+```sh
+$ kubectl apply -f hpa.yml
+```
+
+Iremos pegar o HPA
+
+```sh
+$ kubectl get hpa
+```
+
+### Autoscaling - Aumentar a carga
+
+Agora iremos aumentar a carga no pod contendo o apache em php.
+
+```sh
+$ kubectl run -i --tty load-generator --image=busybox /bin/sh
+# Hit enter for command prompt
+$ while true; do wget -q -O- http://php-apache.default.svc.cluster.local; done
+```
+
+Agora iremos em outro terminal, com o kubectl, verificar como está o HPA, e também no painel do Rancher. 
+
+```sh 
+$ kubectl get hpa
+$ kubectl get deployment php-apache
+```
 
 
 
