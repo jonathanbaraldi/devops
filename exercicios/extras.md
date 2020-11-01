@@ -522,6 +522,59 @@ Ambiente com o mesmo processo de instalação do exercício anterior:
 
 
 
+
+
+# CUSTOS
+
+https://aws.amazon.com/pt/ec2/pricing/on-demand/
+
+## INICIO CURSO
+
+Rancher server - t3.medium - 0,0416
+k8s-1 - t3.medium - 0,0416
+k8s-2 - t3.medium - 0,0416
+k8s-3 - t3.medium - 0,0416
+
+t3.medium	2	Variável	4 GiB	Somente EBS	0,0416 USD por hora
+
+TOTAL USD 0,1664 x 6 = R$ 0,9984
+
+
+## NOVO RANCHER
+
+RancherServer - t3.medium - 0,0416
+Master - t3.medium- 0,0416
+Node-1 - t3a.micro - 0,0094
+Node-2 - t3a.micro - 0,0094
+
+t3a.micro	2	Variável	1 GiB	Somente EBS	0,0094 USD por hora
+t3.medium	2	Variável	4 GiB	Somente EBS	0,0416 USD por hora
+
+TOTAL = USD 0,102 x 6 = R$ 0,612
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Autoscaling
 
 Mesmo ambiente do exercício anterior, com o Prometheus e Grafana instalados.
