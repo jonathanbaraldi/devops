@@ -3,6 +3,7 @@ Material do curso de treinamento de DevOps
 
 Aproveite o cupom de desconto:
 
+
 https://www.udemy.com/course/devops-mao-na-massa-docker-kubernetes-rancher/?referralCode=E0F907D36B02CEE83227
 
 
