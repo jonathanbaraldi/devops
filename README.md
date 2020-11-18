@@ -1,8 +1,7 @@
 # devops
 Material do curso de treinamento de DevOps
 
-Aproveite o cupom de desconto:
-
+Aproveite o cupom com 93% de desconto:
 
 https://www.udemy.com/course/devops-mao-na-massa-docker-kubernetes-rancher/?referralCode=E0F907D36B02CEE83227
 
@@ -120,5 +119,6 @@ DevOps Ninja
 
 ## Aula 38 - DNS - Traefik 2.2
 
+## Aula 39 - Kubernetes Autoscaling
 
 
