@@ -612,10 +612,36 @@ $ kubectl get deployment php-apache
 
 # Kubernetes Dia 2
 
+## Iniciando o dia....
+
+Estes são os itens que ao sentar na cadeira de devops, nós iremos fazer um checklist e verificar TODOS:
+* Máquinas estão online no virtualizador ou na nuvem?
+* RancherServer está online e acessível?
+* Cluster's kubernetes estão todos online e com seus nodes funcionando?
+* Monitoramento dos clusters está habilitado e funcionando?
+* Sistema de log dos cluster's está habilitado e funcionando?
+* Sistema de DNS dos cluster's está habilitado e funcionando?
+* Sistema de volumes dos clusters está habilitado e funcionando?
+* Ferramenta de Registro de imagens está online e funcionando?
+* Revisão dos backups se estão sendo executados.
+* Aplicações que fazem a limpeza no cluster estão rodando sem problemas? Verificar os logs.
+* Comandos de kubectl respondem normalmente?
+
+Ferramentas periféricas
+* Ferramenta de integração contínua, online e funcionando? Se for o pipeline do Rancher, é na lista anterior.
+* Ferramenta de repositório de código, git, online e funcionando?
+
+Itens para ficar atento
+* Quantidade de espaço em disco disponível nos worker's
+* Consumo excessivo de recursos como CPU ou MEMÓRIO por algum container, pois significa que não foi aplicada a política controle de recursos.
+
+CASO todos os itens acima tenham sido revisados e estejam OK, dai então podemos ir para as aplicações rodando dentro do cluster.
+
+
 ## Principais problemas
 
 * Meu cluster não sobre
-	* Verificar portas abertas, 
+	* Verificar portas abertas
 	* Verificar logs dos containers nos nós
 	* DNS, propagação de domínio
 * Minha aplicação na sobe
@@ -639,13 +665,11 @@ O Kubernetes passou do Dia 0 e do Dia 1 e agora está na fase do **Dia 2** para 
 
 A **capacidade de monitoramento** também é importante por causa de todas as tecnologias que interagem com o Kubernetes. Quando você está executando clusters do Kubernetes, muitas vezes ele está sendo implantado junto com uma série de outras tecnologias. De acordo com Knaup, você precisa ser capaz de ter **dados de telemetria ao vivo em todas as partes do sistema** e ser capaz de depurar e diagnosticar problemas e encontrar sua causa raiz. “Todas essas são preocupações que, na verdade, o próprio Kubernetes não resolve”, disse Knaup. “Portanto, você precisa reunir uma pilha inteira de outras tecnologias de código aberto no ecossistema nativo da nuvem, para construir, por exemplo, uma pilha de monitoramento ou para construir uma história de segurança forte.”
 
-
 Existem várias ferramentas que podem ajudar no monitoramento do Kubernetes, como **Prometheus, Jaeger ou Fluentd**, apenas para citar alguns. Pemmaraju recomenda que os administradores de TI não apenas obtenham treinamento no Kubernetes, mas também se familiarizem com o que está acontecendo no ecossistema Kubernetes. “Não se trata apenas do Kubernetes, **mas dos serviços em torno dele**, seja rede, armazenamento, monitoramento, alerta. Todas essas são coisas com as quais você precisa se familiarizar rapidamente ”, disse Pemmaraju.
 
 Outra consideração no Dia 2 é a **escalabilidade**. Quando as empresas começam a usar o Kubernetes, podem ter alguns clusters em execução. Mas, de acordo com Knaup, o uso do Kubernetes pode se espalhar rapidamente por toda a organização depois que esses primeiros projetos forem implantados, portanto, ter a capacidade de escalonar é importante.
 
 Freqüentemente, o Kubernetes é adotado de baixo para cima, o que significa que as equipes adotam o Kubernetes **separadamente**. Eventualmente, as organizações precisam consolidar tudo isso de forma consistente.
-
 
 ### Os operadores do Kubernetes ajudam na automação
 
