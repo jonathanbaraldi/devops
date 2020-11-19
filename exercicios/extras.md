@@ -640,7 +640,7 @@ O Kubernetes passou do Dia 0 e do Dia 1 e agora está na fase do **Dia 2** para 
 A **capacidade de monitoramento** também é importante por causa de todas as tecnologias que interagem com o Kubernetes. Quando você está executando clusters do Kubernetes, muitas vezes ele está sendo implantado junto com uma série de outras tecnologias. De acordo com Knaup, você precisa ser capaz de ter **dados de telemetria ao vivo em todas as partes do sistema** e ser capaz de depurar e diagnosticar problemas e encontrar sua causa raiz. “Todas essas são preocupações que, na verdade, o próprio Kubernetes não resolve”, disse Knaup. “Portanto, você precisa reunir uma pilha inteira de outras tecnologias de código aberto no ecossistema nativo da nuvem, para construir, por exemplo, uma pilha de monitoramento ou para construir uma história de segurança forte.”
 
 
-Existem várias ferramentas que podem ajudar no monitoramento do Kubernetes, como Prometheus, Jaeger ou Fluentd, apenas para citar alguns. Pemmaraju recomenda que os administradores de TI não apenas obtenham treinamento no Kubernetes, mas também se familiarizem com o que está acontecendo no ecossistema Kubernetes. “Não se trata apenas do Kubernetes, **mas dos serviços em torno dele**, seja rede, armazenamento, monitoramento, alerta. Todas essas são coisas com as quais você precisa se familiarizar rapidamente ”, disse Pemmaraju.
+Existem várias ferramentas que podem ajudar no monitoramento do Kubernetes, como **Prometheus, Jaeger ou Fluentd**, apenas para citar alguns. Pemmaraju recomenda que os administradores de TI não apenas obtenham treinamento no Kubernetes, mas também se familiarizem com o que está acontecendo no ecossistema Kubernetes. “Não se trata apenas do Kubernetes, **mas dos serviços em torno dele**, seja rede, armazenamento, monitoramento, alerta. Todas essas são coisas com as quais você precisa se familiarizar rapidamente ”, disse Pemmaraju.
 
 Outra consideração no Dia 2 é a **escalabilidade**. Quando as empresas começam a usar o Kubernetes, podem ter alguns clusters em execução. Mas, de acordo com Knaup, o uso do Kubernetes pode se espalhar rapidamente por toda a organização depois que esses primeiros projetos forem implantados, portanto, ter a capacidade de escalonar é importante.
 
@@ -653,11 +653,17 @@ Depois que uma empresa aborda essas preocupações gerais, que tipo de ferrament
 
 OperatorHub é um índice de operadores da comunidade que são empacotados para implantação em clusters Kubernetes. OperatorHub foi lançado pela Red Hat, os criadores do Operator Framework. Amazon, Microsoft e Google também estavam no grupo inicial de suporte ao OperatorHub.
 
+[Operator Hub](https://operatorhub.io)
+
 **GitOps** surge como uma metodologia poderosa para os desenvolvedores interagirem com o Kubernetes
 
 Outra coisa que Knaup recomenda que as empresas examinem ao entrar no Dia 2 é o GitOps. Por causa da atual pandemia global, a KubeCon EU foi cancelada, mas de acordo com Knaup, cerca de **20%** das negociações programadas eram sobre GitOps.
 
-GitOps é uma metodologia iniciada em 2017 na Weaveworks. De acordo com a Weaveworks, GitOps usa “Git como uma única fonte de verdade para infraestrutura declarativa e aplicativos. Com o Git no centro de seus canais de entrega, os desenvolvedores podem fazer solicitações pull para acelerar e simplificar as implantações de aplicativos e tarefas operacionais para o Kubernetes. ”
+GitOps é uma metodologia iniciada em 2017 na Weaveworks. De acordo com a Weaveworks, GitOps usa **“Git como uma única fonte de verdade para infraestrutura declarativa e aplicativos. Com o Git no centro de seus canais de entrega, os desenvolvedores podem fazer solicitações pull para acelerar e simplificar as implantações de aplicativos e tarefas operacionais para o Kubernetes.”**
+
+Fleet
+[Fleet](https://fleet.rancher.io)
+
 
 
 
