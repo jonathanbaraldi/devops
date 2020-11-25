@@ -379,15 +379,6 @@ https://github.com/jonathanbaraldi/rancher-ha.git
 https://github.com/jonathanbaraldi/rancher-ha.git
 
 
-
-
-
-
-
-
-
-
-
 # Traefik 2.2
 
 https://blog.tomarrell.com/post/traefik_v2_on_kubernetes
@@ -615,6 +606,7 @@ $ kubectl get deployment php-apache
 ## Iniciando o dia....
 
 Estes são os itens que ao sentar na cadeira de devops, nós iremos fazer um checklist e verificar TODOS:
+
 * Máquinas estão online no virtualizador ou na nuvem?
 * RancherServer está online e acessível?
 * Cluster's kubernetes estão todos online e com seus nodes funcionando?
@@ -640,7 +632,7 @@ CASO todos os itens acima tenham sido revisados e estejam OK, dai então podemos
 
 ## Principais problemas
 
-* Meu cluster não sobre
+* Meu cluster não sobe
 	* Verificar portas abertas
 	* Verificar logs dos containers nos nós
 	* DNS, propagação de domínio
@@ -652,7 +644,6 @@ CASO todos os itens acima tenham sido revisados e estejam OK, dai então podemos
 * Onde vejo o monitormento?
 * Onde acompanho os deployment's?
 * Pipeline com problema, como resolvo?
-
 
 ## Referências
 

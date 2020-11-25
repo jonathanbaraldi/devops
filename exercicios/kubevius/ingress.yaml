@@ -2,6 +2,7 @@
 kind: Ingress
 apiVersion: extensions/v1beta1
 metadata:
+  namespace: kubevious
   name: traefik-daemon-set
   annotations:
     kubernetes.io/ingress.class: traefik
@@ -9,10 +10,10 @@ metadata:
     traefik.ingress.kubernetes.io/router.tls.certresolver: default
 spec:
   rules:
-    - host: traefik.rancher.sagemaker.io
+    - host: kubevious.rancher.<SEU_DOMINIO>
       http:
         paths:
           - backend:
-              serviceName: traefik-daemon-set
+              serviceName: kubevious-ui-nodeport
               servicePort: 80
 
