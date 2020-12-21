@@ -682,10 +682,8 @@ Fleet
 
 
 
-
-
-
-# ARM
+ 
+# ARM - A morte do X86
 
 ## ARM vs X86
 
@@ -700,9 +698,8 @@ Projeto - Acorn RISC - Nascimento de todos os processadores dos smartphones de h
 
 ARM - mobile phones - ARM, originalmente Acorn RISC Machine, e depois Advanced RISC Machine, é uma família de arquiteturas RISC desenvolvida pela empresa britânica ARM Holdings. Tais arquiteturas são licenciadas pela ARM para outras empresas, que implementam-nas em seus próprios produtos.
 
-RISC = SIMPLE CPU
-CISC = COMPLEX CPU
-
+**RISC = SIMPLE CPU** 
+**CISC = COMPLEX CPU**
 
 Coldfusion
 [Coldfusion](https://www.youtube.com/watch?v=OuF9weSkS68)
@@ -710,16 +707,14 @@ Coldfusion
 Professor que criou o ARM - depoimento
 * RISC era tão óbvio - Queriam saber o que seria ruim.
 
->>> A DESCOBERTA DAS PROPRIEDADES DE BAIXO CONSUMO DE ENERGIA DO ARM
 8:00
-
-Eles desenharam um chip para ser de muito baixo consumo, mas 0 era inesperado.
+>> A DESCOBERTA DAS PROPRIEDADES DE BAIXO CONSUMO DE ENERGIA DO ARM
+	Eles desenharam um chip para ser de muito baixo consumo, mas 0 era inesperado.
 
 8:24
->>> Mesmo desconectado da fonte de energia, o chip continuava rodando.
+>> Mesmo desconectado da fonte de energia, o chip continuava rodando.
 
 Basicamente o Chip estava rodando com energia residual.
-
 Sem power supply e continuava rodando....
 
 1985 - primeiros protótipos
@@ -742,18 +737,15 @@ CEO Intel- Paul Otelini
 
 Ledo engano.
 
-
-[extremetech](https://www.extremetech.com/mobile/312076-what-kind-of-performance-should-we-expect-from-arm-based-macs)
-
 X86 - PC e servidores
 
 The “classic” formulation of the x86 versus ARM debate goes back to two different methods for building instruction set architectures (ISAs): CISC and RISC. Decades ago, CISC (Complex Instruction Set Computer) designs like x86 focused on relatively complicated, variable-length instructions that could encode more than one operation. CISC-style CPU designs dominated the industry when memory was extremely expensive, both in terms of absolute cost per bit and in access latencies. Complex instruction sets allowed for denser code and fewer memory accesses.
 
 ARM, in contrast, is a RISC (Reduced Instruction Set Computer) ISA, meaning it uses fixed-length instructions that each perform exactly one operation. RISC-style computing became practical in the 1980s when memory costs became lower. RISC designs won out over CISC designs because CPU designers realized it was better to build simple architectures at higher clock speeds than to take the performance and power hits required by CISC-style computing.
 
+[extremetech](https://www.extremetech.com/mobile/312076-what-kind-of-performance-should-we-expect-from-arm-based-macs)
 
 [Comparativo Tecmundo](https://www.tecmundo.com.br/produto/119693-diferenca-processador-arm-um-x86.htm)
-
 
 [AWS Gratitron](https://aws.amazon.com/pt/ec2/graviton/)
 
@@ -772,31 +764,9 @@ https://www.youtube.com/watch?v=67KW4t42SZk
 
 
 
+# A MORTE DO DOCKER
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/
 
 
 
