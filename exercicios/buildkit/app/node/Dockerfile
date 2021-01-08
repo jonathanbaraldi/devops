@@ -1,7 +1,4 @@
 
-
-# FROM node:alpine
-# FROM daveamit/node-alpine-grpc
 FROM node
 
 # Autor/Mantenedor

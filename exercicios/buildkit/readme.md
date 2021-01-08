@@ -50,11 +50,15 @@ Mostrar o preço de comparativo entre as instâncias ARM e X86 na AWS
 
 Somente a AWS tem esses processadores.
 
+
+t4g.small	2	N/A	2 GiB	EBS Only	        $0.0168 per Hour
+t3.small	2	Variable	2 GiB	EBS Only	$0.0208 per Hour
+
 ## Ambiente
 
 ```sh
 
-$ ssh -i arm.pem ubuntu@
+$ ssh -i arm.pem ubuntu@3.231.3.116
 
 $ sudo su
 $ curl https://releases.rancher.com/install-docker/19.03.sh | sh
@@ -67,7 +71,7 @@ $ systemctl restart docker
 
 
 $ cd /home/ubuntu
-$ git clone https://github.com/jonathanbaraldi/devops
+$ git clone https://github.com/jonathanbaraldi/devops.git
 $ cd devops/exercicios/buildkit/app
 
 ```
