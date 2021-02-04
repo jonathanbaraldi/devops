@@ -1,2 +1,2 @@
 #!/bin/bash
-curl -sfL https://get.k3s.io | K3S_URL=https://52.90.239.214:6443 K3S_TOKEN=K10003d286e9bd2fe682e4b8c1d663ddba57e970538c9d8dceafde1f31f545b123a::server:ba72ab7dac4d7774e64b147dbc93c4d8 sh -
+curl -sfL https://get.k3s.io | K3S_URL=https://18.208.174.168:6443 K3S_TOKEN=K105d4fe791e48956ff0ecf298fab4ce4b13b8ff92a647880b81426b69f6e9fff04::server:0f8be4e49a472f22581efa9a45a462a3 sh -

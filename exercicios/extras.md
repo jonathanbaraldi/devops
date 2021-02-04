@@ -761,12 +761,109 @@ https://www.youtube.com/watch?v=67KW4t42SZk
 
 
 
-
-
-
 # A MORTE DO DOCKER
 
 https://kubernetes.io/blog/2020/12/02/dont-panic-kubernetes-and-docker/
+
+
+
+
+
+# Fleet - Multi-cluster deployment
+
+http://fleet.rancher.io/
+
+Mostrar e explicar os componentes do Fleet.io
+
+Fazer o deployment do Rancher
+Fazer o deployment de 3 clusters, sendo 1 máquina cada. No exemplo eu uso uma c4.xlarge.
+
+```sh
+$ docker run -d --name rancher -v /opt/rancher:/var/lib/rancher --restart=unless-stopped -p 80:80 -p 443:443 --privileged rancher/rancher:stable
+```
+
+
+Nossa simulação tem o objetivo de fazer o seguinte:
+
+- prod-1 - DC Região São Paulo | Cliente A
+- prod-2 - DC Região Sul       | Cliente B
+- prod-3 - DC Região Norte	   | Cliente C
+
+Abrir o Explorer e ir no Fleet.
+
+Estudar a estrutura do GIT para poder entender o que faz cada coisa, bem como a documentação do Fleet.
+
+https://github.com/jonathanbaraldi/fleet
+
+Criar o Workspace.
+Colocar os clusters no workspapce -  colocando o label certo.
+
+env: prod-1
+env: prod-2
+env: prod-3
+
+Configurar o repositório do Git para conectar
+
+Esperar o deployment
+
+Fazer alterações no deployment e comitar e monitorar.
+
+
+
+
+
+# Além do Kubernetes
+
+https://rancher.com/beyond-kubernetes
+
+
+
+
+# Upgrade Rancher - SingleNode
+
+Fazer o deployment do Rancher Single Node, versão 2.4.3, salvando o volume local. 
+
+Rancher    2.4.3 - 2.5.5
+Kubernetes 1.17.5 - 1.19.7
+
+
+
+Fazer o deployment do cluster Kubernetes.
+
+
+```sh
+
+#!/bin/bash
+curl https://releases.rancher.com/install-docker/19.03.sh | sh
+
+$ docker run -d --name rancher --restart=unless-stopped -v /opt/rancher:/var/lib/rancher -p 80:80 -p 443:443 rancher/rancher:v2.4.3
+
+```
+
+Acessar o Rancher, e criar um usuário, ou alguma coisa para podermos ver que é o mesmo Rancher após o upgrade.
+
+
+docker stop rancher
+
+docker ps
+
+docker pull rancher/rancher:stable
+
+docker run -d --name rancher-2-5 -v /opt/rancher:/var/lib/rancher --restart=unless-stopped -p 80:80 -p 443:443 --privileged rancher/rancher:stable
+
+Rancher Upgraded!!
+
+# Upgrade Kubernetes
+
+Acessar a UI do Rancher, trocar a versão do Kubernetes e aguardar.
+
+Kubernetes Upgraded!!
+
+
+
+
+
+
 
 
 
