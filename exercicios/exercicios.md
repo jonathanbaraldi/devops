@@ -112,9 +112,9 @@ Para rodar nosso docker-compose, precisamos remover todos os containers que est�
 
 É preciso editar o arquivo docker-compose.yml, onde estão os nomes das imagens e colocar o seu nome de usuário.
 
-Linha 8 = <dockerhub-user>/nginx:devops
-Linha 18 = image: <dockerhub-user>/redis:devops
-Linha 37 = image: <dockerhub-user>/node:devops
+- Linha 8 = <dockerhub-user>/nginx:devops
+- Linha 18 = image: <dockerhub-user>/redis:devops
+- Linha 37 = image: <dockerhub-user>/node:devops
 
 Após alterar e colocar o nome correto das imagens, rodar o comando de up -d para subir a stack toda.
 
@@ -285,8 +285,8 @@ O Graylog é a aplicação que iremos usar como agregador de logs do cluster. Os
 Para instalar o Graylog, iremos aplicar o template dele, que está em graylog.yml. Para isso, é preciso que sejam editados 2 pontos no arquivo.
 
 
-Linha 264 - value: http://graylog.rancher.<dominino>/api
-Linha 340 - host: graylog.rancher.<dominio>
+- Linha 264 - value: http://graylog.rancher.<dominino>/api
+- Linha 340 - host: graylog.rancher.<dominio>
 
 Substituir o {user}, pelo nome do aluno. Após substituir, aplicar e entrar no Graylog para configurar.
 ```sh
