@@ -827,37 +827,67 @@ Rancher    2.4.3 - 2.5.5
 Kubernetes 1.17.5 - 1.19.7
 
 
+```sh
+#!/bin/bash
+curl https://releases.rancher.com/install-docker/19.03.sh | sh
+docker run -d --name rancher --restart=unless-stopped -v /opt/rancher:/var/lib/rancher -p 80:80 -p 443:443 rancher/rancher:v2.4.3
+
+```
 
 Fazer o deployment do cluster Kubernetes.
 
-
 ```sh
-
 #!/bin/bash
 curl https://releases.rancher.com/install-docker/19.03.sh | sh
-
-$ docker run -d --name rancher --restart=unless-stopped -v /opt/rancher:/var/lib/rancher -p 80:80 -p 443:443 rancher/rancher:v2.4.3
+docker run -d --privileged --restart=unless-stopped --net=host -v /etc/kubernetes:/etc/kubernetes -v /var/run:/var/run rancher/rancher-agent:v2.4.3 --server https://3.231.24.217 --token xd5qrv45jcblq2sdffsxvkkbwxfq2ls9zhzdwq4rp6ggbplt9tsnl4 --ca-checksum ba99499c86927047107b28492a255d133546138d72e013fe98e8c7c6f7f2e62a --etcd --controlplane --worker
 
 ```
+
 
 Acessar o Rancher, e criar um usuário, ou alguma coisa para podermos ver que é o mesmo Rancher após o upgrade.
 
 
-docker stop rancher
+```sh
+$ docker pull rancher/rancher:stable
 
-docker ps
+$ docker stop rancher
 
-docker pull rancher/rancher:stable
+$ docker ps
 
-docker run -d --name rancher-2-5 -v /opt/rancher:/var/lib/rancher --restart=unless-stopped -p 80:80 -p 443:443 --privileged rancher/rancher:stable
+$ docker run -d --name rancher-2-5 -v /opt/rancher:/var/lib/rancher --restart=unless-stopped -p 80:80 -p 443:443 --privileged rancher/rancher:stable
 
 Rancher Upgraded!!
 
+# Acessar o Rancher e ver como ficou
 # Upgrade Kubernetes
 
-Acessar a UI do Rancher, trocar a versão do Kubernetes e aguardar.
+# Acessar a UI do Rancher, trocar a versão do Kubernetes e aguardar.
 
-Kubernetes Upgraded!!
+# Kubernetes Upgraded!!
+
+
+```
+# CANARY DEPLOYMENT
+
+Pasta do Canary
+
+
+# SEGURANÇA NA AWS
+
+## Parte 1
+- Inspector - OK
+- GuardDuty - OK
+- Config - OK
+
+
+## Parte 2
+- SecurityHub
+- Detective
+- WAF
+
+
+
+
 
 
 

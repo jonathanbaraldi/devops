@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: nginx-canary-deployment
+spec:
+ selector:
+  matchLabels:
+   app: nginx
+ replicas: 3
+ template:
+  metadata:
+   labels:
+    app: nginx
+    version: "2.0"
+  spec:
+    containers:
+      - name: nginx
+        image: nginx:alpine
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "50m"
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: index2
+    volumes:
+      - name: index2
+        hostPath:
+          path: /canary/v2

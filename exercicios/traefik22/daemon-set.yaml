@@ -47,8 +47,8 @@ spec:
         # Define two entrypoint ports, and setup a redirect from HTTP to HTTPS.
         - --entryPoints.web.address=:80
         - --entryPoints.websecure.address=:443
-        - --entrypoints.web.http.redirections.entryPoint.to=websecure
-        - --entrypoints.web.http.redirections.entryPoint.scheme=https
+        #- --entrypoints.web.http.redirections.entryPoint.to=websecure
+        #- --entrypoints.web.http.redirections.entryPoint.scheme=https
 
         # Enable debug logging. Useful to work out why something might not be
         # working. Fetch logs of the pod.
