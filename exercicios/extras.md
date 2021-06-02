@@ -871,6 +871,8 @@ Rancher Upgraded!!
 
 Pasta do Canary
 
+../canary
+
 
 # SEGURANÇA NA AWS
 
@@ -889,6 +891,10 @@ Pasta do Canary
 
 
 
+
+# Engenharia do Chaos - Chaos Engineering - Parte 1 - Introdução
+
+Pasta ../chaos-engineering
 
 
 
