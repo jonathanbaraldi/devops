@@ -413,7 +413,7 @@ spec:
     spec:
       serviceAccount: fluentd
       serviceAccountName: fluentd
-      containers:
+      containers: 
       - name: fluentd
         image: xbernpa/fluentd-kubernetes-gelf
         # Repositório oficial - xbernpa/fluentd-kubernetes-gelf

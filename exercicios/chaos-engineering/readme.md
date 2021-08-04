@@ -52,3 +52,42 @@ Acompanhar no dashboard
 
 
 
+
+# Engenharia do Chaos - Parte 4 - Experimento 2 - CPU Stress
+
+Fazer o deployment do nginx e testar o pod kill
+
+Aplicar
+```sh
+$ kubectl apply -f stress-chaos-2.yml
+
+
+$ kubectl apply -f stress-chaos-3.yml
+$ kubectl apply -f stress-chaos-4.yml
+
+```
+Acompanhar no dashboard
+
+
+
+
+
+
+
+# IO TESTE
+
+
+dd if=/dev/zero of=/root/testfile bs=1G count=1 oflag=direct
+
+
+
+
+
+
+
+
+
+
+
+
+
