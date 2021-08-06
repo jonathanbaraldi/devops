@@ -1,30 +1,26 @@
 
 
-![alt text](k8s-image/aks.png)
+FIGURA 1  - GERAL
 
-
+![Kubernetes](k8s-image/k8s.svg)
 
 
 # Kubernetes gerenciado pelo provedor vs. Kubernetes autogerenciado
 
-Implantamos o cluster Kubernetes em serviços Kubernetes gerenciados pelo provedor, como Amazon Elastic Kubernetes Service (EKS) e Google Kubernetes Engine (GKE) em artigos anteriores. Ao fazer isso, vimos que não temos que gerenciar o nó mestre ou plano de controle do cluster e só temos que nos preocupar em como implantar o aplicativo e selecionar o tipo de instância. Além disso, todas as outras preocupações são tratadas pelos fornecedores.
-
-
-
+Implantamos o cluster Kubernetes em serviços Kubernetes gerenciados pelo provedor, como Amazon Elastic Kubernetes Service (EKS) e Google Kubernetes Engine (GKE), e manualmente pelo Rancheranteriores. Ao fazer isso, vimos que não temos que gerenciar o nó mestre ou plano de controle do cluster e só temos que nos preocupar em como implantar e selecionar o tipo de instância. Além disso, todas as outras preocupações são tratadas pelos fornecedores.
 
 Alguns recursos são universais entre os três provedores.
 
 Todos os três provedores oferecem fácil integração com seus outros serviços. Isso não apenas facilitará as operações, mas também ajudará na disponibilidade.
-Em termos do próprio serviço Kubernetes, todos eles implantam e mantêm o plano de controle para você, então você só precisa se preocupar com os nós. Dessa forma, você pode se concentrar mais em seus aplicativos.
+
+Em termos do próprio serviço Kubernetes, todos eles implantam e mantêm o plano de controle para você, então você só precisa se preocupar com os nós. Dessa forma, você pode se concentrar mais em suas aplicações.
+
 Mas, embora a funcionalidade principal do Kubernetes seja geralmente a mesma, os recursos que cada provedor de nuvem oferece podem ser muito diferentes. Então, como escolhemos onde executar nosso cluster Kubernetes? Continue lendo enquanto comparamos AKS, EKS e GKE para ver qual pode ser o melhor para você.
 
 
-
-
-
-
-
 ## Nó Mestre
+
+FIGURA DO NÓ MESTRE - 
 
 O nó mestre gerencia o cluster e é responsável por manter o estado do cluster. Para nos comunicarmos com os nós mestres, usamos a ferramenta de cliente Kubernetes Kubectl. Com o Kubectl, podemos facilmente emitir comandos para que nossos nós mestres funcionem de acordo. O nó mestre é usado para gerenciar o estado do cluster e pode ser replicado para alta disponibilidade. O nó mestre tem os seguintes componentes para gerenciar e controlar o estado do cluster:
 
@@ -34,39 +30,32 @@ O nó mestre gerencia o cluster e é responsável por manter o estado do cluster
 4. Programador Kube: programa atividades para nós de trabalho com base no armazenamento de eventos no banco de dados etcd
 
 
-# Serviços Kubernetes gerenciados por provedor
+# Serviços Kubernetes gerenciados pelo provedor
+
+FIGURA KUBERNETES EM NUVENS.
 
 Até agora, vimos o que é um nó mestre e a finalidade que ele serve para nós de cluster. Provedores de nuvem, no entanto, têm seu próprio serviço Kubernetes gerenciado, como serviço Amazon Elastic Kubernetes, Google Kubernetes Engine ou serviço Azure Kubernetes. Esses provedores de nuvem gerenciam o nó mestre para você imediatamente. Você não precisa provisionar ou gerenciar o nó mestre. As versões gerenciadas variam de diferentes provedores de nuvem, alguns vão tão longe a ponto de oferecer suporte dedicado, ambientes pré-configurados e hospedagem.
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Principais serviços Kubernetes gerenciados por provedor
-
-
 # Qual serviço Kubernetes gerenciado do provedor de nuvem é o melhor?
 
-TL; DR? Se você já investiu em um dos três principais provedores de nuvem, faz sentido continuar a usar esse serviço. Todos os três são fortes candidatos.
+KUBERNETES VS KUBERNETES
+
+Se você já investiu em um dos três principais provedores de nuvem, faz sentido continuar a usar esse serviço. Todos os três são fortes candidatos.
 
 Mas há benefícios e recursos exclusivos em todos os serviços gerenciados do Kubernetes abordados abaixo. O serviço Kubernetes gerenciado do provedor de nuvem que você usa realmente depende da situação.
 
 O Amazon Elastic Kubernetes Service (EKS) é o serviço Kubernetes gerenciado mais amplamente usado.
+
 Se você não está comprometido com um provedor de nuvem, pode considerar o Google Kubernetes Engine (GKE). O GKE tem a maioria dos recursos e capacidades automatizadas.
+
 O Azure Kubernetes Service (AKS) pode ser a opção mais econômica e se integra bem a todos os recursos da Microsoft.
-Vamos nos aprofundar nos prós e contras e nas diferenças de recursos entre cada provedor. Lembre-se de que, como a nuvem evolui muito rapidamente, alguns dos detalhes na comparação abaixo podem ter mudado no momento em que você leu isto.
+
+Vamos nos aprofundar nos prós e contras e nas diferenças de recursos entre cada provedor. 
+
+Lembre-se de que, como a nuvem evolui muito rapidamente, alguns dos detalhes na comparação abaixo podem ter mudado no momento em que você leu isto.
 
 
 
@@ -75,6 +64,8 @@ Vamos nos aprofundar nos prós e contras e nas diferenças de recursos entre cad
 
 
 ## 1 - Google Kubernetes Engine - GKE
+
+FIGURA GKE
 
 O Kubernetes foi criado pelo Google para sua própria ferramenta de orquestração de contêineres, inicialmente chamada de BORG, mais tarde eles mudaram seu nome para Omega - essa longa história é o motivo de ele ser considerado o serviço Kubernetes gerenciado mais avançado. Ele também inclui uma verificação de integridade e reparo automático de microsserviços, registro e monitoramento com um driver de pilha. Além disso, ele vem com escalonamento automático de quatro vias e suporte a vários clusters.
 
@@ -101,32 +92,25 @@ Nota: Isso será implantado em um ID de projeto padrão
 Custo: o GKE cobra US $ 0,10 centavos por hora pelo gerenciamento de cluster do Kubernetes e pelos serviços subjacentes de acordo com uma escala de preços.
 
 
-
-
-
-
-
-
-
-Prós e contras do Google Kubernetes Engine (GKE)
+### Prós e contras do Google Kubernetes Engine (GKE)
 
 Se você não tem nenhum investimento em infraestrutura de nuvem ou está trabalhando em um ambiente com várias nuvens, pode fazer sentido olhar para o GKE. Ele possui a maioria dos recursos prontos para uso e oferece os recursos mais automatizados.
 
 ## Pontos fortes do GKE
 
-- O GKE tem as versões mais disponíveis dos três serviços gerenciados. 25
-- Existem atualizações automáticas para o plano de controle e nós.26
-- Dependendo de suas necessidades, você pode se inscrever em canais de lançamento Rápido, Regular ou Estável para testar automaticamente novas versões.27
-- O GKE fornece reparo automático da integridade do nó.28
-- Você pode usar um Container-Optimized OS para os nós, que são mantidos pelo Google para fornecer melhor segurança e estabilidade.29
-- Há um painel integrado intuitivo com monitoramento e registro de todos os componentes usando o pacote de operações do Google Cloud.30
-- Para um ambiente de desenvolvedor, você pode utilizar a extensão Cloud Code para Visual Studio Code e IntelliJ.31
+- O GKE tem as versões mais disponíveis dos três serviços gerenciados.
+- Existem atualizações automáticas para o plano de controle e nós.
+- Dependendo de suas necessidades, você pode se inscrever em canais de lançamento Rápido, Regular ou Estável para testar automaticamente novas versões.
+- O GKE fornece reparo automático da integridade do nó.
+- Você pode usar um Container-Optimized OS para os nós, que são mantidos pelo Google para fornecer melhor segurança e estabilidade.
+- Há um painel integrado intuitivo com monitoramento e registro de todos os componentes usando o pacote de operações do Google Cloud.
+- Para um ambiente de desenvolvedor, você pode utilizar a extensão Cloud Code para Visual Studio Code e IntelliJ.
 
 ## Pontos fracos do GKE
 
-- Apenas um cluster zonal é gratuito.31
-- O GKE só corresponderá ao SLA de EKS 99,95% se você usar clusters regionais, que custa US $ 0,10 por cluster por hora.32
-- O GKE não tem nuvem governamental, portanto, não há suporte para nuvem governamental.34
+- Apenas um cluster zonal é gratuito.
+- O GKE só corresponderá ao SLA de EKS 99,95% se você usar clusters regionais, que custa US $ 0,10 por cluster por hora.
+- O GKE não tem nuvem governamental, portanto, não há suporte para nuvem governamental.
 
 
 
@@ -139,13 +123,15 @@ Se você não tem nenhum investimento em infraestrutura de nuvem ou está trabal
 
 ## 2 - Serviço Amazon Elastic Kubernetes - EKS
 
+FIGRUA EKS
+
 O serviço Amazon Web tem seu próprio serviço Kubernetes gerenciado, denominado EKS. É também outro serviço Kubernetes gerenciado em que você não precisa manter ou criar o plano de controle do cluster. O EKS executa um plano de controle de cluster em vários AZ para garantir que mantenha a alta disponibilidade e substitua automaticamente as instâncias não íntegras. Ele funciona com diferentes AWS para fornecer escalabilidade e segurança para seu aplicativo, como o seguinte:
 
-Amazon ECR para imagens de contêiner
-Elastic Load Balancing para distribuição de carga
-IAM para autenticação
-Amazon VPC para isolamento
-A maneira mais simples de iniciar um cluster Kubernetes no EKS é Eksctl: EKsctl é a ferramenta EKS CLI para interagir com o cluster.
+- Amazon ECR para imagens de contêiner
+- Elastic Load Balancing para distribuição de carga
+- IAM para autenticação
+- Amazon VPC para isolamento
+- A maneira mais simples de iniciar um cluster Kubernetes no EKS é Eksctl: EKsctl é a ferramenta EKS CLI para interagir com o cluster.
 
 1. Para criar um cluster usando Fargate, ou seja, implantação sem servidor:
 
@@ -172,7 +158,6 @@ Custo: o EKS cobra US $ 0,10 por hora pelo gerenciamento do cluster Kubernetes e
 EKS is the most widely used managed Kubernetes services, according to a survey from the CCNF. But EKS has the least amount of pre-configured solutions, so it will require more manual configuration. While this may mean that you have more control over your cluster, it also requires more time focused on operations.
 
 
-
 ## EKS strengths	
 - Integration with the strong AWS ecosystem.
 - There is a 99.95% Service Level Agreement.16	
@@ -180,9 +165,7 @@ EKS is the most widely used managed Kubernetes services, according to a survey f
 - AWS GovCloud is a supported region.18
 
 
-
 ## EKS weaknesses
-
 - Out of the three providers, EKS has the most manual steps to upgrade the Cluster components.19
 - There is no automatic node health repair.20
 - Logging and monitoring can be configured in Amazon CloudWatch Container Insights 21, but the service is not intuitive.
@@ -192,7 +175,16 @@ EKS is the most widely used managed Kubernetes services, according to a survey f
 - There is no IDE extension for developing EKS code.
 
 
+
+
+
+
+
+
+
 ## 3 - Serviço Azure Kubernetes - AKS
+
+FIGURA DO AKS
 
 O AKS também é um serviço Kubernetes gerenciado, que reduz a complexidade e a sobrecarga operacional do gerenciamento do Kubernetes, transferindo grande parte dessa responsabilidade para o Azure. O AKS lida com todas as suas tarefas críticas, monitoramento de integridade e manutenção para você. Ele oferece Kubernetes sem servidor, uma integração contínua integrada e experiência de entrega contínua (CI / CD) e segurança e governança de nível empresarial.
 
@@ -210,6 +202,9 @@ az aks create --resource-group mine --name magalix --node-count 1 --enable-addon
 Este comando criará um cluster de nome magalix no grupo de recursos da mina com um nó de trabalho e monitoramento habilitado.
 
 Custo: AKS não cobra nada pelo gerenciamento do cluster Kubernetes. Ele cobra apenas por seus serviços subjacentes.
+
+
+
 
 
 
@@ -291,6 +286,10 @@ Istio é uma malha de serviço de código aberto usada para facilitar a conexão
 10. Painel do Kubernetes
 
 É uma IU da Web para o cluster Kubernetes e tem um painel nativo que facilita o monitoramento e a solução de problemas do cluster Kubernetes.
+
+
+
+
 
 
 # Autogerenciado vs Gerenciada pelo provedor, o que escolher?
