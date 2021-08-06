@@ -2,9 +2,9 @@
 
 FIGURA 1  - GERAL
 
-<p align="center">
+
+
 ![Kubernetes](k8s-image/k8s-anim.svg)
-</p>
 
 
 # Kubernetes gerenciado pelo provedor vs. Kubernetes autogerenciado
@@ -22,7 +22,7 @@ Mas, embora a funcionalidade principal do Kubernetes seja geralmente a mesma, os
 
 ## Nó Mestre
 
-FIGURA DO NÓ MESTRE - 
+![Nó-mestre - Control Plane ](k8s-image/master1.png)
 
 O nó mestre gerencia o cluster e é responsável por manter o estado do cluster. Para nos comunicarmos com os nós mestres, usamos a ferramenta de cliente Kubernetes Kubectl. Com o Kubectl, podemos facilmente emitir comandos para que nossos nós mestres funcionem de acordo. O nó mestre é usado para gerenciar o estado do cluster e pode ser replicado para alta disponibilidade. O nó mestre tem os seguintes componentes para gerenciar e controlar o estado do cluster:
 
@@ -34,7 +34,7 @@ O nó mestre gerencia o cluster e é responsável por manter o estado do cluster
 
 # Serviços Kubernetes gerenciados pelo provedor
 
-FIGURA KUBERNETES EM NUVENS.
+![Kubernetes nas nuves](k8s-image/k8s-cloud.png)
 
 Até agora, vimos o que é um nó mestre e a finalidade que ele serve para nós de cluster. Provedores de nuvem, no entanto, têm seu próprio serviço Kubernetes gerenciado, como serviço Amazon Elastic Kubernetes, Google Kubernetes Engine ou serviço Azure Kubernetes. Esses provedores de nuvem gerenciam o nó mestre para você imediatamente. Você não precisa provisionar ou gerenciar o nó mestre. As versões gerenciadas variam de diferentes provedores de nuvem, alguns vão tão longe a ponto de oferecer suporte dedicado, ambientes pré-configurados e hospedagem.
 
