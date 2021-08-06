@@ -55,7 +55,7 @@ Lembre-se de que, como a nuvem evolui muito rapidamente, alguns dos detalhes na 
 
 ## 1 - Google Kubernetes Engine - GKE
 
-![Google Kubernetes Engine](k8s-image/gk3.png)
+![Google Kubernetes Engine](k8s-image/gke.png)
 
 O Kubernetes foi criado pelo Google para sua própria ferramenta de orquestração de contêineres, inicialmente chamada de BORG, mais tarde eles mudaram seu nome para Omega - essa longa história é o motivo de ele ser considerado o serviço Kubernetes gerenciado mais avançado. Ele também inclui uma verificação de integridade e reparo automático de microsserviços, registro e monitoramento com um driver de pilha. Além disso, ele vem com escalonamento automático de quatro vias e suporte a vários clusters.
 
@@ -269,5 +269,11 @@ Istio é uma malha de serviço de código aberto usada para facilitar a conexão
 # Autogerenciado vs Gerenciada pelo provedor, o que escolher?
 
 Ao escolher entre essas modalidades, temos que avaliar os requisitos, custo e flexibilidade do aplicativo. Se estamos optando pelo serviço Kubernetes gerenciado pelo provedor, percebemos que ele custa aproximadamente US $ 100 por mês apenas para o gerenciamento do cluster. Por outro lado, se optarmos pelo autogerenciamento, temos o tempo e a habilidade necessários para gerenciar o cluster Kubernetes? Definitivamente, vale a pena considerar. No entanto, quando se trata de flexibilidade, os serviços autogerenciados do Kubernetes nos oferecem muito mais opções. Em última análise, você terá que considerar os requisitos das suas aplicações, o tempo disponível para tarefas de gerenciamento, o nível de habilidade do time, tempo de projeto, e muitos outros fatores.
+
+![Arquitetura Multicluster](k8s-image/distributed-deployment.png)
+
+https://www.udemy.com/course/multicloud-multicluster-k8s-rancher-traefik-cockroachdb/?referralCode=9AE9624A95C83529212F
+
+![Udemy - DevOps Ninja - Multicloud - Multicluster](k8s-image/logo.png)
 
 
