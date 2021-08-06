@@ -2,7 +2,9 @@
 
 FIGURA 1  - GERAL
 
-![Kubernetes](k8s-image/k8s.svg)
+<p align="center">
+![Kubernetes](k8s-image/k8s-anim.svg)
+</p>
 
 
 # Kubernetes gerenciado pelo provedor vs. Kubernetes autogerenciado
