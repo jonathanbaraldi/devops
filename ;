@@ -1,0 +1,12 @@
+mais conteudo
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch is up to date with 'origin/master'.
+#
+# Changes to be committed:
+#	new file:   docs/k8s-image/k8s-cloud.png
+#	new file:   docs/k8s-image/master1.png
+#	modified:   docs/kubernetes-gerenciado-vs-manual.md
+#
