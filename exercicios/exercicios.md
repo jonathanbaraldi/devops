@@ -224,6 +224,12 @@ $ vi ~/.kube/config
 $ kubectl get nodes
 ```
 
+Ou qdo tiver o erro de certificado: Unable to connect to the server: x509: certificate signed by unknown authority:
+
+```
+kubectl get nodes --insecure-skip-tls-verify=true
+kubectl get pods -n kube-system --insecure-skip-tls-verify=true
+```
 
 
 
