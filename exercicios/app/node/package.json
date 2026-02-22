@@ -11,7 +11,7 @@
     "body-parser": "^1.12.4",
     "express": "^4.13.3",
     "mysql": "",
-    "nodemon": "^2.0.4",
+    "nodemon": "^3.1.14",
     "redis": ""
   }
 }
